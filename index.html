@@ -1,0 +1,66 @@
+<!doctype html>
+<html><head>
+<title>file2url</title>
+<!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script-->
+<style>
+textarea,input{
+display:block;
+border:0px solid red;
+margin:25px 5% 25px 5%;
+padding:25px 3% 25px 3%;
+background:#f3f0f0;
+color:grey;
+width: 84%;
+}
+textarea{height:320px;background:#f9fcff;}
+</style>
+</head>
+<body>
+<div id="data1" style="display:none;"></div>
+<input type="file" id="files1">
+<textarea id="ta1"></textarea>
+<script>
+    function getFileData(cbf)
+{
+    var fin = document.getElementById('files1');
+  var file1 = fin.files[0];
+  var reader = new FileReader();
+  reader.onload = 
+       function(e) {
+          var fe = function(e){
+           var str =  e.target.result;
+           //if(cbf){cbf(str);}
+           //   else{
+                  /*
+                  var w = window.open();
+                   setTimeout(function(){
+                       var str2 = '<textarea>'+str+'</textarea>';
+                       w.document.write(str2);
+                   },1000);
+                   */
+                   document.getElementById('ta1').focus();
+                    document.getElementById('ta1').innerHTML=str;
+                    /*
+                    setTimeout(function(){
+                    	var ta1 = document.getElementById('ta1');
+                    	ta1.focus();ta1.selectionStart=0;
+                    	ta1.selectionEnd=ta1.innerHTML.length;
+                    	},3000);
+                    	*/
+                    
+            //  }
+	   };
+	   fe(e);
+      };
+ reader.readAsDataURL(file1);
+    document.getElementById('ta1').innerHTML='reading file; please wait...';
+}
+setTimeout(function(){
+document.getElementById('files1').addEventListener('change', getFileData, false);
+},1000);
+
+    
+</script>
+
+</body>
+</html>
