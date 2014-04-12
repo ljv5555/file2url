@@ -1,4 +1,4 @@
-var jQueryAndUnderscore(cb)
+function jQueryAndUnderscore(cb)
 {
     var when = function(stringToEval,cb)
     {
