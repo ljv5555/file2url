@@ -8,14 +8,15 @@
 
 <script>
 
-var worker = new Worker("worker.js");
+window.worker = new Worker("worker.js");
 
 worker.onmessage = function (oEvent) {
   window.returndata=oEvent.data;
+  try{console.log('main page got worker data.')}catch(e){}
   log('got data.');
 };
 
-
+try{console.log('worker started.')}catch(e){}
 
 	
 </script>
@@ -57,6 +58,7 @@ textarea{height:320px;background:#f9fcff;}
 <script>
 	
 	function rb(f,jsta,jsto){
+		log('rb: '+sto);
                 var reader = new FileReader();
                 var start = jsta;
                 var stop = jsto;
@@ -119,9 +121,15 @@ function info(o)
 
 function onpageload()
 {
-	setTimeout(function(){
-		document.getElementById('files1').addEventListener('change', pfiles, false);
-		},1000);
+	setTimeout(
+		
+		function(){
+			document.getElementById('files1').addEventListener('change', 
+				function(){var fa = document.getElementById('files1').files; pfiles(fa);}
+			, false);
+		}
+		
+		,1000);
 }
 
 jQueryAndUnderscore(
