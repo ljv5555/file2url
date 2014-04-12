@@ -5,9 +5,6 @@
 <script src="//cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore.js"></script>
 -->
 <script src="jQueryAndUnderscore.js"></script>
-<script>
-	jQueryAndUnderscore(function(){alert('done');});
-</script>
 
 
 
@@ -131,16 +128,21 @@ function pfiles(files)
     
     //jQuery('.pout').html(output.join(''));
     
-};
+}
 
 function info(o)
 {
 	jQuery('.info').slideUp().html('').append(jQuery('<pre/>').html(o)).slideDown();
-	setTimeout(function(){jQuery('.info').slideUp(5000);},10000);
+	setTimeout(function(){jQuery('.info').fadeOut(30000);},10000);
 }
 
-jQuery(function(){info('Page loaded.');});	
-</script>
+jQueryAndUnderscore(function(){onpageload(); jQuery(function(){info('Page loaded.');}  });	
 
+function onpageload()
+{
+	
+}
+</script>
+	
 </body>
 </html>
