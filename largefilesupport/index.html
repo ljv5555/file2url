@@ -6,7 +6,19 @@
 -->
 <script src="jQueryAndUnderscore.js"></script>
 
+<script>
 
+var worker = new Worker("worker.js");
+
+worker.onmessage = function (oEvent) {
+  window.returndata=oEvent.data;
+  log('got data.');
+};
+
+
+
+	
+</script>
 
 <title>file2url</title>
 <!--script src="https://ajax.googleapis.com/ajax/libs/jquery/1.9.1/jquery.min.js"></script-->
@@ -67,7 +79,7 @@ document.getElementById('files1').addEventListener('change', getFileData, false)
 
 <script>
 	
-	function rb(f,jsta,jsto,rc){
+	function rb(f,jsta,jsto){
                 var reader = new FileReader();
                 var start = jsta;
                 var stop = jsto;
@@ -75,32 +87,23 @@ document.getElementById('files1').addEventListener('change', getFileData, false)
                 reader.onloadend = function(evt) {
                   if (evt.target.readyState == FileReader.DONE) { 
                       var ostr = ''+evt.target.result;
-                      var ostr2 = btoa(ostr);
-                      var table = jQuery('<table/>');
-                      var tr = jQuery('<tr/>');
-                      var td1 = jQuery('<td/>').text(''+start);
-                      var td2 = jQuery('<td/>').text(''+stop);                      
-                      var td3 = jQuery('<td/>').text(''+ostr);
-                      var td4 = jQuery('<td/>').text(''+ostr2);
-                      tr.append(td1).append(td2).append(td3).append(td4);
-                      table.append(tr);
-                      var tw = jQuery('<div class="tw"/>').append(table);
-                      jQuery('.'+rc).append(tw);             
+                      worker.postMessage({'action':'appendhex','data','ostr'});
+		      log(100.0*((1+jsto)/(f.length+1)) + 'percent complete.');
                   }
                 };
                 reader.readAsBinaryString(blob);
-}
+	}
        
 function pfiles(files)
 {
     window.fa=files;
     var output = [];
     var j = 0;    
-    for(var i = 0;i<files.length;i++)
+    for(var i = 0;i<files.length && i<1;i++)
     {
         var f = files[i];
         var fr = new FileReader();
-        jQuery('.pout').append('<div><ul><li><b>', 
+        log('<div><ul><li><b>', 
                     jQuery('<div/>').text(f.name).html(),
                     '</b><ul>',
                     '<li>',
@@ -117,12 +120,13 @@ function pfiles(files)
             var s = j;
             var e = j+3;
             while(e>=f.size){e--;}
-            jQuery('.pout').append(jQuery('<div class="rc_'+j+'"></div>'));
+            //jQuery('.pout').append(jQuery('<div class="rc_'+j+'"></div>'));
             var v1 = f;
             var v2 = s+0;
             var v3 = e+0;
-            var v4 = 'rc_'+j;
-            rb(v1,v2,v3,v4);
+            //var v4 = 'rc_'+j;
+            rb(v1,v2,v3);
+            worker.postMessage({'action':'getresult'});
         }
     }
     
