@@ -1,3 +1,5 @@
+var currentString='';
+
 onmessage=function(o)
 {
   if(o.data.action=='reset'){currentString='';}
