@@ -133,15 +133,22 @@ function pfiles(files)
 function info(o)
 {
 	jQuery('.info').slideUp().html('').append(jQuery('<pre/>').html(o)).slideDown();
-	setTimeout(function(){jQuery('.info').fadeOut(30000);},10000);
+	setTimeout(function(){ jQuery('.info').fadeOut(30000); },10000);
 }
-
-jQueryAndUnderscore(function(){onpageload(); jQuery(function(){info('Page loaded.');}  });	
 
 function onpageload()
 {
 	
 }
+
+jQueryAndUnderscore(
+		function()
+		{
+			onpageload(); 
+			info('Page loaded.');
+		}
+	);	
+
 </script>
 	
 </body>
