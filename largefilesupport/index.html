@@ -119,6 +119,11 @@ function pfiles(files)
     //jQuery('.pout').html(output.join(''));
     
 };
+
+function info(o)
+{
+	jQuery('.info').slideUp().html('').append(jQuery('<pre/>').html(o)).slideDown();
+}
 	
 </script>
 
