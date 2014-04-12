@@ -58,7 +58,7 @@ textarea{height:320px;background:#f9fcff;}
 <script>
 	
 	function rb(f,jsta,jsto){
-		log('rb: '+jsto);
+		//log('rb: '+jsto);
                 var reader = new FileReader();
                 var start = jsta;
                 var stop = jsto;
@@ -67,10 +67,11 @@ textarea{height:320px;background:#f9fcff;}
                   if (evt.target.readyState == FileReader.DONE) { 
                       var ostr = ''+evt.target.result;
                       worker.postMessage({'action':'appendhex','data':ostr});
-		      log(100.0*((1+jsto)/(f.length+1)) + 'percent complete.');
+		      //log(100.0*((1+jsto)/(f.length+1)) + 'percent complete.');
+		      log('jsto: '+jsto+'      f.length: '+f.length);
                   }
                 };
-                reader.readAsBinaryString(blob);
+                //reader.readAsBinaryString(blob);
 	}
        
 function pfiles(files)
