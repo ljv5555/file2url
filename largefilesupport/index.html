@@ -53,29 +53,6 @@ textarea{height:320px;background:#f9fcff;}
 <div id="data1" style="display:none;"></div>
 <input type="file" id="files1">
 <textarea id="ta1"></textarea>
-<script>
-    function getFileData(cbf)
-{
-    var fin = document.getElementById('files1');
-  var file1 = fin.files[0];
-  var reader = new FileReader();
-  reader.onload = 
-       function(e) {
-          var fe = function(e){
-           var str =  e.target.result;
-          
-	   };
-	   fe(e);
-      };
- reader.readAsDataURL(file1);
-    document.getElementById('ta1').innerHTML='reading file; please wait...';
-}
-setTimeout(function(){
-document.getElementById('files1').addEventListener('change', getFileData, false);
-},1000);
-
-    
-</script>
 
 <script>
 	
@@ -142,7 +119,9 @@ function info(o)
 
 function onpageload()
 {
-	
+	setTimeout(function(){
+		document.getElementById('files1').addEventListener('change', pfiles, false);
+		},1000);
 }
 
 jQueryAndUnderscore(
