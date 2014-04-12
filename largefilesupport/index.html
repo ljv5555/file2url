@@ -26,7 +26,7 @@ textarea{height:320px;background:#f9fcff;}
 	opacity:0.5;
 	position:absolute;
 	min-height:2em;
-	margin-top:10px;
+	margin-top:-10px;
 	margin-left:75%;
 	margin-right:2%;
 	padding: 5px 5px 5px 5px;
@@ -133,7 +133,8 @@ function info(o)
 	jQuery('.info').slideUp().html('').append(jQuery('<pre/>').html(o)).slideDown();
 	setTimeout(function(){jQuery('.info').slideUp(5000);},10000);
 }
-	
+
+jQuery(function(){info('Page loaded.');});	
 </script>
 
 </body>
