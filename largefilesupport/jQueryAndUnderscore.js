@@ -20,10 +20,11 @@ function jQueryAndUnderscore(cb)
         
         
         var h = document.getElementsByTagName('head')[0] || (function(){var h=document.createElement('head');document.all[0].appendChild(h);return h;})();
-        if(h.children.length==0){h.appendChild(document.createElement('style'));}
-        
-
-        h.children[0].insertBefore(e,cst);
+                var h = document.getElementsByTagName('head')[0] || (function(){var h=document.createElement('head');document.all[0].appendChild(h);return h;})();
+        var h1 = false;
+        if(h.children.length==0){h1 = document.createElement('style');h.appendChild(h1);}
+        else{h1 = h.children[0];}
+        h.insertBefore(e,h1);
     };
     if(!window["jQuery"]){getXsS("https://cdnjs.cloudflare.com/ajax/libs/jquery/1.9.1/jquery.js");}
     if(!window["_"]){getXsS("https://cdnjs.cloudflare.com/ajax/libs/underscore.js/1.6.0/underscore-min.js");}
