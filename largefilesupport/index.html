@@ -87,7 +87,7 @@ document.getElementById('files1').addEventListener('change', getFileData, false)
                 reader.onloadend = function(evt) {
                   if (evt.target.readyState == FileReader.DONE) { 
                       var ostr = ''+evt.target.result;
-                      worker.postMessage({'action':'appendhex','data','ostr'});
+                      worker.postMessage({'action':'appendhex','data':ostr});
 		      log(100.0*((1+jsto)/(f.length+1)) + 'percent complete.');
                   }
                 };
