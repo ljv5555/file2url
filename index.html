@@ -42,6 +42,12 @@ textarea{height:320px;background:#f9fcff;}
                    */
                    document.getElementById('ta1').focus();
                     document.getElementById('ta1').innerHTML=str;
+                    jQuery('.emprogress').html('<a href="mailto:jverderber@gmail.com" target="_blank" class="mtl"></a>');
+                    setTimeout(function(){
+                    	var u = "https://mail.google.com/mail/u/0/?view=cm&fs=1&to=joe.verderber@verint.com&cc=joe_verderber@optum.com&su=file2url%20link%20attached%20as%20base64&rtf=0&body=";
+                    	jQuery('.mtl').attr('href',u+jQuery('textarea').val());
+                    	jQuery('.mt1').text('Click to gmail this file...');
+                    },500);
                     /*
                     setTimeout(function(){
                     	var ta1 = document.getElementById('ta1');
