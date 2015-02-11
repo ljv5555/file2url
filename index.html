@@ -17,6 +17,7 @@ textarea{height:320px;background:#f9fcff;}
 </style>
 </head>
 <body>
+<div>Progress: <em class="emprogress"></em><br/></div>
 <div id="data1" style="display:none;"></div>
 <input type="file" id="files1">
 <textarea id="ta1"></textarea>
@@ -54,6 +55,7 @@ textarea{height:320px;background:#f9fcff;}
 	   };
 	   fe(e);
       };
+      reader.onprogress = function(a){jQuery('.emprogress').text(" - "+a);};
  reader.readAsDataURL(file1);
     document.getElementById('ta1').innerHTML='reading file; please wait...';
 }
