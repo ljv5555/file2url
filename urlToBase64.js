@@ -2,7 +2,7 @@ var webPage = require('webpage');
 var page = webPage.create();
 var system = require('system');
 var args = system.args;
-if(!args[1] || args[1]===''){args[1]='http://ljv5555.github.io/file2url';}
+if(!args[1] || args[1]===''){args[1]='http://ljv5555.github.io/file2url/urlToBase64.js';}
 
 page.viewportSize = {
 	width: 1920,
