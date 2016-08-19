@@ -12,7 +12,7 @@ page.viewportSize = {
 page.open(args[1], function (status) {
   setTimeout(function(){
   var base64 = page.renderBase64('JPG');
-  console.log("<img style=\"display:none;\" src=\"data:image/jpeg;base64,"+base64+"\" -data-timestamp=\""+(new Date()).getTime()+"\"/>");
+  console.log("<style>.bgi,.bgi_"+(new Date()).getTime()+"{background-image:url('data:image/jpeg;base64,"+base64+"'}</style>");
   phantom.exit();
   },800);
 });
